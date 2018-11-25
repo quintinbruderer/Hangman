@@ -36,8 +36,8 @@ with open('English_20k.txt') as english_no_swears:
 top_english_words = top_english_words.split() #reads text document, then converts to list
 
 for word in top_english_words[:]:
-    if len(word) < 4:
-        top_english_words.remove(word) #removes words smaller than 3 letters from list
+    if len(word) < 4 or len(word) > 9:
+        top_english_words.remove(word) #removes words smaller than 3 letters and larger than 9 from list
 
 random.shuffle(top_english_words)
 random_word = top_english_words[random.randint(0, len(top_english_words)-1)].lower()
@@ -51,7 +51,7 @@ for letter in random_word:
 
 #print(random_word) debugging purposes
 print(
-    'Welcome to Quinn\'s Python Hangman Game!\n'
+    '\nWelcome to Quinn\'s Python Hangman Game!\n'
 )
 
 while trial_count <= 6:
@@ -87,5 +87,5 @@ while trial_count <= 6:
         print('Already Guessed %s. Try again\n' % user_letter_guess, 'Past Guessed Letters', letter_history)
 
 else:
-    print("You Lose...")
+    print("You Lose...", 'The word was %s' % random_word)
     print_hangman()
